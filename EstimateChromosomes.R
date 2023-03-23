@@ -3,28 +3,18 @@
 rm(list = ls())
 graphics.off()
 
-require(seqinr)
-#setwd("C:/Users/JiaYing/Group Project")
+if(!require(seqinr)){
+    install.packages("seqinr")
+    library(seqinr)
+}
+args = commandArgs(trailingOnly = TRUE)
 
-# # files to test
-# fastafile <-
-#   "C:/Users/JiaYing/Group Project/FASTA/Ridaeus_Ras1_v1.fasta.gz"
-# fastafile <-
-#   "C:/Users/JiaYing/Group Project/Rubus_argutus/Hillquist_genome_v1_purged_primary_contigs_HiC.fasta.gz"
-# fastafile <-
-#   "C:/Users/JiaYing/Group Project/FASTA/Rubus_occ_V3_10-12-17.fasta.gz"
-# fastafile <-
-#   "C:/Users/JiaYing/Group Project/FASTA/Rubus_chingii_Hu_fina.fa.gz"
-# fastafile <-
-#   "C:/Users/JiaYing/Group Project/FASTA/Burbank_genome_v1_purged_primary_contigs_HiC.fasta.gz"
-# fastafile <-
-#   "C:/Users/JiaYing/Group Project/FASTA/Rubus_Idaeus.genome.fa.gz"
-# fastafile <-
-#   "C:/Users/JiaYing/Group Project/FASTA/Rubus_occidentalis_masked_v1.1.fasta.gz"
-# fastafile <-
-#   "C:/Users/JiaYing/Group Project/FASTA/Rubus_occidentalis_v1.1.fasta.gz"
-# fastafile <-
-#   "C:/Users/JiaYing/Group Project/Ridaeus_Ras1_v1.0/Ridaeus_Ras1_scaffolds_yahs.fasta"
+# argument 1 = fasta file path
+# argument 2 = data frame output file  path
+fastafile <- args[1]
+outputtext <- args[2]
+
+fastafile <- "C:\\Users\\JiaYing\\GP\\Anitra1161Contigs.fasta.gz"
 
 # read fasta and return data frame with sequence id + lengths, assuming 'chromosomes' are atleast 1e+7 bp
 fasta <- read.fasta(fastafile, seqtype = 'DNA')
@@ -49,4 +39,6 @@ for (h in 1:length(header)) {
 colnames(estChr)[1] <- "seqid"
 colnames(estChr) [2] <- "seqlen"
 
-print(estChr)
+estChr <- estChr[order(estChr$seqid),]
+
+write.table(estChr, file = outputtext, sep = "\t", quote = FALSE, col.names = FALSE, row.names = FALSE)
