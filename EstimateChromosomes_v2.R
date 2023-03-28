@@ -18,18 +18,8 @@ args = commandArgs(trailingOnly = TRUE)
 fastafile <- args[1]
 outputtext <- args[2]
 
-#fastafile <- "C:\\Users\\JiaYing\\Group Project\\FASTA\\Anitra1161Contigs.fasta.gz"
-#fastafile <- "C:\\Users\\JiaYing\\Group Project\\FASTA\\Burbank_genome_v1_purged_primary_contigs_HiC.fasta.gz"
-#fastafile <- "C:\\Users\\JiaYing\\Group Project\\FASTA\\Rubus_chingii_Hu_fina.fa.gz"
-#fastafile <- "C:\\Users\\JiaYing\\Group Project\\FASTA\\Rubus_Idaeus.genome.fa.gz"
-#(estimates 1, only have 7) fastafile <- "C:\\Users\\JiaYing\\Group Project\\FASTA\\Rubus_occ_V3_10-12-17.fasta.gz"
-#(estiamtes 1, only have 7) 
-#fastafile <- "C:\\\\Users\\JiaYing\\Group Project\\FASTA\\Rubus_occidentalis_masked_v1.1.fasta.gz"
-#(estimates 29) 
-#fastafile <- "C:\\Users\\JiaYing\\Group Project\\FASTA\\Rubus_occidentalis_v1.0.a1.scaffolds.fasta.gz"
-#(estimates 1, only have 7) 
-#fastafile <- "C:\\Users\\JiaYing\\Group Project\\FASTA\\Rubus_occidentalis_v1.1.fasta.gz"
-fastafile <- "C:\\Users\\JiaYing\\OneDrive - Cranfield University\\Cranfield University\\Group Project\\Ridaeus_Ras1_v1.0\\Ridaeus_Ras1_v1.fasta"
+# fastafile <- "C:\\Users\\JiaYing\\GP\\Anitra1161Contigs.fasta.gz"
+# outputtext <- "C:\\Users\\JiaYing\\GP\\Anitra_OUT.csv"
 
 
 # read fasta and return data frame with sequence id + lengths, assuming 'chromosomes' are atleast 1e+7 bp
@@ -56,7 +46,7 @@ colnames(header_length_table) [2] <- "seqlen"
 colnames(row_length_table)[1] <- "seqid"
 colnames(row_length_table) [2] <- "seqlen"
 header_length_table$seqlen <- as.numeric(header_length_table$seqlen)
-plot(row_length_table)
+#plot(row_length_table)
 
 if (nrow(header_length_table) < 20) {
   k <- 1
@@ -66,7 +56,7 @@ if (nrow(header_length_table) < 20) {
 
 set.seed(123)
 km <- kmeans(row_length_table, k)
-fviz_cluster(km, data = row_length_table, palette = "jco")
+#fviz_cluster(km, data = row_length_table, palette = "jco")
 cluster <- which.max(km[["centers"]][,2])
 
 for (h in 1:length(header)) {
