@@ -29,7 +29,7 @@ outputtext <- args[2]
 #fastafile <- "C:\\Users\\JiaYing\\Group Project\\FASTA\\Rubus_occidentalis_v1.0.a1.scaffolds.fasta.gz"
 #(estimates 1, only have 7) 
 #fastafile <- "C:\\Users\\JiaYing\\Group Project\\FASTA\\Rubus_occidentalis_v1.1.fasta.gz"
-
+fastafile <- "C:\\Users\\JiaYing\\OneDrive - Cranfield University\\Cranfield University\\Group Project\\Ridaeus_Ras1_v1.0\\Ridaeus_Ras1_v1.fasta"
 
 
 # read fasta and return data frame with sequence id + lengths, assuming 'chromosomes' are atleast 1e+7 bp
@@ -83,4 +83,4 @@ colnames(estChr) [2] <- "seqlen"
 
 estChr <- estChr[order(estChr$seqid),]
  
-write.table(estChr, file = outputtext, sep = "\t", quote = FALSE, col.names = FALSE, row.names = FALSE)
+write.table(estChr, file = outputtext, sep = ",", col.names = FALSE, row.names = FALSE)
