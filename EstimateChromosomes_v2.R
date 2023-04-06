@@ -18,8 +18,8 @@ args = commandArgs(trailingOnly = TRUE)
 fastafile <- args[1]
 outputtext <- args[2]
 
-# fastafile <- "C:\\Users\\JiaYing\\GP\\Anitra1161Contigs.fasta.gz"
-# outputtext <- "C:\\Users\\JiaYing\\GP\\Anitra_OUT.csv"
+# fastafile <- "C:\\Users\\JiaYing\\OneDrive - Cranfield University\\Documents\\Group Project\\Anitra1161Contigs.fasta\\Anitra1161Contigs.fasta"
+# outputtext <- "C:\\Users\\JiaYing\\OneDrive - Cranfield University\\Documents\\Group Project\\Anitra1161Contigs.fasta\\Anitra_OUT.csv"
 
 
 # read fasta and return data frame with sequence id + lengths, assuming 'chromosomes' are atleast 1e+7 bp
@@ -32,7 +32,7 @@ isChrlen <- c()
 estChr <- data.frame()
 
 lengths <- getLength(fasta)
-header <- gsub("[^0-9A-Za-z]", "", getAnnot(fasta))
+header <- gsub("[^_0-9A-Za-z]", "", getAnnot(fasta))
 
 for (h in 1:length(header)) {
   header_length_table <-
